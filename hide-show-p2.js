@@ -14,13 +14,13 @@ if (document.querySelector('body').classList[7] === 'o2') { //check if the site 
 
     //create Hide Show comments button
     let hideCommentsButton = document.createElement('li');
-    hideCommentsButton.innerHTML = '<a id="hide-comments" href="#"> Hide Comments </a>';
+    hideCommentsButton.innerHTML = '<a id="hide-comments" style="cursor: pointer"> Hide Comments </a>';
     hideCommentsButton.onclick = hideShowComments;
     menuBar.appendChild(hideCommentsButton);
 
     //create Hide Show content
     let hideContentsButton = document.createElement('li');
-    hideContentsButton.innerHTML = '<a id="hide-contents" href="#"> Hide Contents </a>';
+    hideContentsButton.innerHTML = '<a id="hide-contents" style="cursor: pointer"> Hide Contents </a>';
     hideContentsButton.onclick = hideShowContents;
     menuBar.appendChild(hideContentsButton);
 }
