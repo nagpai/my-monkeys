@@ -50,17 +50,18 @@ function hideShowComments (event) {
 
 //show and hide main content function
 function hideShowContents (event) {
-
+    let contentText = document.getElementById('hide-contents');
     let allContents = document.getElementsByClassName('entry-content');
     if( allContents[1].style.display !== 'none'){
         for( let i = 1; i <= allContents.length; i++){
             allContents[i].style.display = 'none';
         }
+        contentText.innerText = 'Show Contents';
     } else {
         for( let i = 1; i <= allContents.length; i++){
             allContents[i].style.display = '';
         }
-
+        contentText.innerText = 'Hide Contents';
     }
 
 }
