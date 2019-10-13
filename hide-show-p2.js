@@ -3,12 +3,12 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
-// @author       You
+// @author       Nagesh
 // @match        https://*.wordpress.com/
 // @grant        none
 // ==/UserScript==
 
-if (document.querySelector('body').classList[7] === 'o2') {
+if (document.querySelector('body').classList[7] === 'o2') { //check if the site is a p2
 
     let menuBar = document.getElementById('wp-admin-bar-root-default');
 
@@ -64,3 +64,4 @@ function hideShowContents (event) {
     }
 
 }
+ 
