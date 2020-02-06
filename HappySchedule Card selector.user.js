@@ -56,11 +56,35 @@ function hideMembers(name){
 
 }
 
-//const teamSelector = document.getElementsByName('teamId')[0];
-//teamSelector.addEventListener('change', function() {setTimeout(createDropdown, 1000)});
-
+// Check DOM every 5s and add HE-filter if not available yet
 window.onload = () => {
-    setTimeout( createDropdown, 3000);
+    setInterval( function() {
+        // Fetch current HE-filter if available
+        const he_filter = document.querySelector( '.global-filter-he' );
+
+        // Add HE filter if not available yet
+        if ( ! he_filter ) createDropdown();
+    }, 5000 );
 }
 
+// Initialse HE-filter when selecting different group or team
+window.addEventListener( 'change', ( event ) => {
+    if ( event.target.matches('.global-filter-project > select') || event.target.matches('.global-filter-team > select') ) {
+        // Fetch current HE-filter
+        const he_filter = document.querySelector( '.global-filter-he' );
 
+        // Delete current HE-filter
+        he_filter.parentNode.removeChild(he_filter);
+
+        // Initialse new HE-filter
+        createDropdown();
+    }
+});
+
+/**
+ * Element.matches() polyfill (simple version)
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+ */
+if (!Element.prototype.matches) {
+	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
