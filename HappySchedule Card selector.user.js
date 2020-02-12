@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         HappySchedule Card selector
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
-// @author       You
+// @author       Nagesh and Niels
 // @match        https://schedule.happy.tools/reports/user-week-summary
 // @grant        none
 // ==/UserScript==
