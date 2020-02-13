@@ -2,7 +2,7 @@
 // @name         HappySchedule Card selector
 // @namespace    http://tampermonkey.net/
 // @version      0.2
-// @description  try to take over the world!
+// @description  Add a dropdown to filter team member on Weekly report page
 // @author       Nagesh and Niels
 // @match        https://schedule.happy.tools/reports/user-week-summary
 // @grant        none
