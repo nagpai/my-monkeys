@@ -1,0 +1,32 @@
+function refineLMAFK() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet(); // Select the spreadsheet
+  const rawLogSheet = sheet.getSheetByName("Raw log");  // Select the worksheet
+  const lastRow = rawLogSheet.getLastRow(); // Get number of rows in the sheet
+  const logReport = sheet.getSheetByName("Final Log"); // Get the final report sheet
+  
+  for ( var row = 2; row <= lastRow; row++) { // Scan the Raw log
+    const checkCell = rawLogSheet.getRange(row, 4); // check for Raw logs that have not been processed
+    if( checkCell.isBlank() ){ // proceed with cleanup if the range is blank (unprocessed log)
+       const singleLog = rawLogSheet.getRange(row, 2).getValue();
+       const cleanedValue = formatLMAFK(singleLog);
+       displayLog(cleanedValue,rawLogSheet,row);  
+       insertRecord(cleanedValue, logReport);
+    }
+  } 
+}
+
+function formatLMAFK(alrt) { // Clean up the long log text and split it into columns using an array
+    const fltr = /\ssubmission\sfrom\s|\*/;  // Regex filter to use delimiters '*' and 'from' string
+    const arr = alrt.split(fltr).map( x => x.trim()); 
+    return [3,5,7,9,11,13].map( i => arr[i]); // Send only selected elements / columns in the array, as defined in the index array in first part of the statement
+  }
+
+function displayLog(cleanLog,sheet,row) { // place the information on the correct columns on the same raw log sheet
+  for( let i = 0, col = 4; i <= cleanLog.length; i++, col++) {
+    sheet.getRange(row, col).setValue(cleanLog[i]);
+  }
+}
+
+function insertRecord(cleanLog, sheet) { // Insert cleaned columns in reverse chronological order on Final Log sheet
+    sheet.insertRowBefore(2).getRange(2,1,1,6).setValues([cleanLog]);
+}
